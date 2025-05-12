@@ -34,9 +34,66 @@
   </div>
 
   <!--Diretiva v-bind
-  Atributos dinâmicos-->
+  Atributos dinâmicos e one-way data binding-->
   <!--Recebe valores de atributos dinamicamente, com v-bind:atributo ou :atributo-->
   <img src="https://placehold.co/400" :alt="imgAlt" />
+
+  <!--V-bind para classes possui a característica de permitir utilizar objetos e arrays para defini-lás -->
+  <h2 :class="[{ title: true, home: isHome }, 'text']">Olá, Mundo!</h2>
+  <!--O mesmo ocorre em atributos style-->
+  <p :style="styleClass">Este é um texto de testes</p>
+
+  <!--Diretiva v-model-->
+  <!--Two-ways data binding-->
+  <div>
+    <!--A alteração da variável pode ser feita tanto pelo código como pelo formulário-->
+    <label>Nome</label>
+    <input v-model="name" type="text" />
+    {{ name }}
+  </div>
+
+  <div>
+    <label>Esporte favorito: </label>
+    <select v-model="sport">
+      <option value="">Escolha</option>
+      <option value="futebol">futebol</option>
+      <option value="natação">natação</option>
+    </select>
+    {{ sport }}
+  </div>
+
+  <div>
+    <label>Newsletter: </label>
+    <input v-model="newsletter" type="radio" value="sim" /> Sim
+    <input v-model="newsletter" type="radio" value="não" /> Não<br />
+    {{ newsletter }}
+  </div>
+
+  <div>
+    <label>Termos de uso</label> <br />
+    <input v-model="contract" type="checkbox" /> Aceita nossos termos?<br />
+    {{ contract }}
+  </div>
+
+  <div>
+    <label>Cores favoritas</label><br />
+    <input v-model="colors" type="checkbox" value="azul" /> Azul
+    <input v-model="colors" type="checkbox" value="amarelo" /> Amarelo<br />
+    {{ colors }}
+  </div>
+
+  <!--Diretiva v-on: ou @
+  Eventos-->
+  <button @click="onClick">Clique aqui!</button>
+  <!--Modificadores de eventos
+  .prevent para prevenir ação do evento, nesse caso redirecionamento.
+  Muitos outros modificadores de evento na documentação
+  -->
+  <form action="https://google.com">
+    <input @submit.prevent="onSubmit" type="submit" value="Enviar"/>
+  </form>
+
+  <input @keyup="onKeyUp" type="text" />
 
   <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
@@ -53,15 +110,34 @@ export default {
     HelloWorld,
     PageHeader,
   },
+  // Métodos para eventos
+  methods: {
+    onClick($evt) {
+      window.alert(`Click! ${$evt}`);
+    },
+    onSubmit($evt) {
+      console.log('Submit.', $evt);
+    },
+    onKeyUp($evt) {
+      console.log('KeyUp', $evt);
+    },
+  },
   // Atributos dos componentes
   data() {
     // Retorna um objeto de mapeamento para os componentes
     return {
       imgAlt: 'Imagem dinâmica',
+      isHome: true,
       showHeader: false,
       name: 'Gabryel',
+      contract: false,
+      newsletter: '',
+      sport: '',
+      colors: [],
       showName: true,
       access: 'admin',
+      // Propriedades que usam "-" devem ser substituídas para camelCase no objeto
+      styleClass: { color: 'aqua', backgroundColor: 'black' },
       array: [
         {
           name: 'Gabryel',
@@ -97,5 +173,15 @@ export default {
   align-items: center;
   background-color: antiquewhite;
   border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-size: 2rem;
+  font-style: italic;
+  color: red;
+}
+
+.text {
+  text-align: justify;
 }
 </style>
