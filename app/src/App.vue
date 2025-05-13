@@ -28,13 +28,26 @@
   <PageHeader>
     <!--Usa o slot padrão-->
     Olá, mundo
-    <!--Usa slot nomeado-->
+    <!--slots nomeados-->
     <template v-slot:description>
       <p>Descrição em slots</p>
     </template>
-    <!--Declara um slot title-->
+    <!--Declara o uso do slot title, permite condicionais com $slots-->
     <template v-slot:title> Serviços </template>
   </PageHeader>
+
+  <!--Escopo de Estilos
+  Estilo global < estilo componente-->
+  <BaseCard />
+  <!--Sem scoped o estilo do componente pode ser aplicado em elementos-->
+  <div class="card">Teste</div>
+
+  <!--Props-->
+  <BaseAlert variant="success">Seu formulário foi enviado com sucesso!</BaseAlert>
+  <BaseAlert variant="fail">Houve uma falha ao enviar o formulário!</BaseAlert>
+
+  <!--Emits, eventos emitidos de componentes filhos-->
+  <BaseAlert v-if="showAlert" variant="success" @close="onClose()">Sucesso!</BaseAlert>
 </template>
 
 <script>
@@ -47,6 +60,10 @@ import EventMod from './components/EventMod.vue';
 import ComputedProp from './components/ComputedProp.vue';
 import WatchProp from './components/WatchProp.vue';
 import LifeCycle from './components/LifeCycle.vue';
+
+// @ é um atalho para a pasta raiz src, pode ser configurado
+import BaseCard from '@/components/BaseCard.vue';
+import BaseAlert from '@/components/BaseAlert.vue';
 
 export default {
   // Objeto Js exportado para criar a página
@@ -62,14 +79,22 @@ export default {
     ComputedProp,
     WatchProp,
     LifeCycle,
+    BaseCard,
+    BaseAlert,
   },
   // Métodos do objeto
-  methods: {},
+  methods: {
+    onClose() {
+      console.log('close');
+      this.showAlert = false;
+    },
+  },
   // Método de mapeamento dos atributos
   data() {
     // Retorna um objeto de mapeamento para os componentes
     return {
       showCycle: true,
+      showAlert: true,
     };
   },
   computed: {},
