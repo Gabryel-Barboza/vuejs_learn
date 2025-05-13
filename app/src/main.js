@@ -1,4 +1,5 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 
-createApp(App).mount('#app')
+// Cria variável global app para a instância com window.app
+window.app = createApp(App).mount('#app');

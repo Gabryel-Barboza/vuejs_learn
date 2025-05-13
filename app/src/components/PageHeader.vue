@@ -2,11 +2,26 @@
 
 <!--Estrutura-->
 <template>
-  <header>Header</header>
+  <!--Tag que é injetada com o conteúdo interior na tag do componente-->
+  <!--Default slot-->
+  <slot />
+  <!--Named slots, acessa os slots com $slots
+  se tiver declarado um slot title na origem é retornado o elemento h1-->
+  <h1 v-if="$slots.title">
+    <slot name="title" />
+  </h1>
+  <slot name="description" />
+  <slot name="value" />
 </template>
 
 <!--Lógica-->
-<script></script>
+<script>
+export default {
+  mounted() {
+    console.log(this.$slots);
+  },
+};
+</script>
 
 <!--Estilos -->
 <style>
