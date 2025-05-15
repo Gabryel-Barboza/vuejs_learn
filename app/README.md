@@ -1,14 +1,29 @@
-# Aprendendo Vue.Js
+# app
 
-Esse repositório contém projetos criados com o objetivo de aprender sobre esse framework para front-end.
+## Project setup
 
-O primeiro projeto criado foi o [app](https://github.com/Gabryel-Barboza/vuejs_learn/tree/main/app) e conta com as principais técnicas deste framework utilizadas e separadas por componente na aplicação.
+```
+npm install
+```
 
-São os conceitos aprendidos durante a criação desse projeto:
+### Compiles and hot-reloads for development
 
-- []
-- []
+```
+npm run serve
+```
 
-## Como criar novos projetos com Vue.Js
+### Compiles and minifies for production
 
-## Aprofundando conceitos
+```
+npm run build
+```
+
+### Lints and fixes files
+
+```
+npm run lint
+```
+
+### Customize configuration
+
+See [Configuration Reference](https://cli.vuejs.org/config/).
