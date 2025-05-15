@@ -41,7 +41,7 @@
   <!--Sem scoped o estilo do componente pode ser aplicado em elementos-->
   <div class="card">Teste</div>
 
-  <!--Props-->
+  <!--Props, dados enviados para componentes filhos-->
   <BaseAlert variant="success">Seu formulário foi enviado com sucesso!</BaseAlert>
   <BaseAlert variant="fail">Houve uma falha ao enviar o formulário!</BaseAlert>
 
@@ -95,7 +95,15 @@ export default {
       showAlert: true,
     };
   },
+  // Propriedades computadas, veja o component ComputedProp
   computed: {},
+  // Observadores, veja o componente WatchProp
   watch: {},
+  // Props, veja o componente BaseAlert
+  props: {},
+  // Mixins, veja o componente CalculateDiscountMixin em Products
+  mixins: [],
+  // Lifecycle Hooks, veja o componente LifeCycle
+  beforeMount() {},
 };
 </script>

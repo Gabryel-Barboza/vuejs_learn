@@ -11,8 +11,13 @@
   </nav>
   <!--RouterView define onde os componentes são renderizados para cada rota-->
   <router-view />
-</template>
+  <p>Nome: {{ $store.state.user.name }}</p>
 
+  <!--Veja a view HomeView-->
+</template>
+<script>
+export default {};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

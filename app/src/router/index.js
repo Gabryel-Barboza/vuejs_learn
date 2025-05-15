@@ -22,7 +22,7 @@ const routes = [
     component: () => import('../views/ServicesView.vue'),
   },
   {
-    // Rotas com parametrização
+    // Rotas com parametrização, id recebe um valor dinâmico
     path: '/users/:id',
     name: 'users-edit',
     component: () => import('../views/UserEditView.vue'),
