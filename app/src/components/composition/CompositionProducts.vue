@@ -7,21 +7,34 @@
   <button @click="user.name = 'Kaio'">Mudar nome</button>
   <p>{{ user }}</p>
   <p>{{ admin }}</p>
+  <p>{{ info }}</p>
+
+  <!--Composition Hooks-->
+  <AppHook v-if="showAppHook" />
+  <button @click="showAppHook = !showAppHook">Toggle</button>
+
+  <!--Composition prop e events-->
+  <AppButton variant="fail" @update="getUpdate" />
   <div>
     <AppProduct v-for="product in $store.state.products" :key="product.id" :product="product" />
   </div>
-  <pre>
-    {{ $store.state.cart }}
-  </pre>
 </template>
 <script>
 import AppProduct from '@/components/products/AppProduct.vue';
-import { ref, reactive } from 'vue';
+import AppHook from './AppHook.vue';
+import AppButton from './AppButton.vue';
+
+// Na composition API as funcionalidades são importadas, usando apenas o necessário
+import { ref, reactive, computed, watch } from 'vue';
 
 export default {
+  // É possível utilizar apenas uma, escolha Composition ou Options API
   components: {
     AppProduct,
+    AppHook,
+    AppButton,
   },
+
   // hooks beforeCreated e Created, objeto data() e methods são substituídos por
   setup() {
     // Não está disponível para ser acessado e não é reativo (não pode ser alterado dinamicamente)
@@ -39,12 +52,38 @@ export default {
     // Ref encapsula atributos em .value, no template o VueJs retira o wrapper
     admin.value.age = 20;
 
+    // Computed properties
+    const info = computed(() => {
+      return `=== Nome: ${user.name} Idade: ${user.age} Altura: ${user.height} ===`;
+    });
+
+    // Watchers
+    // Para observar campos únicos em objetos, utilize um callback com retorno desse campo no lugar do objeto reativo
+    watch(
+      user,
+      () => {
+        console.log('User alterado!');
+      },
+      { deep: true }
+    );
+
+    // Hooks
+    const showAppHook = ref(true);
+
+    // Emits
+    const getUpdate = (data) => {
+      console.log('update', data);
+    };
+
     // Os atributos ficam disponíveis para a aplicação se retornados no objeto
     return {
       name,
       changeName,
       user,
       admin,
+      info,
+      showAppHook,
+      getUpdate,
     };
   },
 };
