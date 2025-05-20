@@ -1,18 +1,25 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  // Extensões para o Vite, adicionando tailwindcss
+  plugins: [vue(), vueDevTools(), tailwindcss()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      // Objeto import para recuperar variáveis de ambiente em .env, disponível pelo Vite
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-})
+  // Alterando configurações do app
+  server: {
+    port: 3000,
+  },
+  build: {
+    outDir: 'build',
+  },
+});
