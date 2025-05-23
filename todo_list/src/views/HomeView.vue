@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import TaskList from '@/components/main/TaskList.vue';
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
+  <main class="w-9/10 mx-auto flex justify-center items-center">
+    <TaskList />
   </main>
 </template>
+
+<style scoped></style>
