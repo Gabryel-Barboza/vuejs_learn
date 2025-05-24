@@ -1,12 +1,6 @@
 <template>
-  <div>
-    <TodoTask
-      v-for="(task, index) in counterStore.tasks"
-      :key="index"
-      :title="task.title"
-      :completion-date="task.completionDate"
-      :is-finished="task.isFinished"
-    />
+  <div class="w-full max-w-2xl p-4 flex flex-col gap-5 bg-black/40">
+    <TodoTask v-for="(task, index) in counterStore.tasks" :key="index" :task="task" />
   </div>
 </template>
 <script setup lang="ts">

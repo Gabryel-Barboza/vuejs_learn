@@ -1,2 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
 @import './base.css';
 @import 'tailwindcss';
+
+@theme {
+  --font-display: "Tangerine", cursive;
+}

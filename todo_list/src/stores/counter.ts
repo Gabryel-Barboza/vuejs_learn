@@ -13,7 +13,7 @@ export const useCounterStore = defineStore('counter', () => {
       isFinished: false,
     },
     {
-      title: 'Criar Modal com a Descrição Completa de Cada Tarefa.',
+      title: 'Criar Modal com a Descrição Completa de Cada Tarefa',
       description: `
       Faça uma página ou modal para abrir a tarefa e mostrar todos os seus dados.
       `,
