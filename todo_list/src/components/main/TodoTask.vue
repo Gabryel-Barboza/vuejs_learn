@@ -1,10 +1,16 @@
 <template>
   <div class="p-3 bg-gray-600/50 todo-container">
-    <input class="mr-2 accent-green-300 container-input" type="checkbox" v-model="taskFinished" />
+    <input v-model="taskFinished" class="mr-2 accent-green-300 container-input" type="checkbox" />
     <span class="font-bold container-title">{{ title }}</span>
-    <span class="container-date p-1 ml-2 rounded-md shadow-md bg-green-300/10">{{
+    <span class="p-1 ml-2 rounded-md shadow-md bg-green-300/10 container-date">{{
       completionDate
     }}</span>
+    <span
+      @click="deleteTask"
+      class="p-2 cursor-pointer hover:text-gray-200 active:text-amber-200 container-trash"
+    >
+      <i class="fa-solid fa-trash"></i>
+    </span>
   </div>
 </template>
 
@@ -15,7 +21,8 @@ export default {
   props: {
     task: { type: Object, required: true },
   },
-  setup(props) {
+  setup(props, ctx) {
+    const id = props.task.id;
     const title = ref(props.task.title);
     const taskFinished = ref(props.task.isFinished);
 
@@ -23,7 +30,9 @@ export default {
       return taskFinished.value ? new Date().toLocaleDateString() : '';
     });
 
-    return { title, completionDate, taskFinished };
+    const deleteTask = () => ctx.emit('deleteTask', id);
+
+    return { title, completionDate, taskFinished, deleteTask };
   },
 };
 </script>
@@ -53,6 +62,12 @@ export default {
   }
   .container-date {
     grid-column-start: 3;
+  }
+
+  .container-trash {
+    grid-column-start: 3;
+    grid-row-start: 3;
+    place-self: end;
   }
 }
 </style>

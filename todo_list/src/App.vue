@@ -19,7 +19,7 @@ export default {
   <header class="max-h-48 mb-5">
     <NavBar class="flex flex-0 flex-wrap justify-between items-center p-4 bg-black/20" />
   </header>
-  <main class="h-[80vh] mt-10">
+  <main class="min-h-[80vh] mt-10">
     <RouterView />
   </main>
   <footer>
