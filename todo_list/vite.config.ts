@@ -17,7 +17,7 @@ export default defineConfig({
   },
   // Alterando configurações do app
   server: {
-    port: 3000,
+    port: 3002,
   },
   build: {
     outDir: 'build',

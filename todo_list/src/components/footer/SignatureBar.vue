@@ -4,7 +4,5 @@
     <li class="font-display font-bold text-2xl hover:underline"><a href="#">Gabryel Barboza</a></li>
   </ol>
 </template>
-<script lang="ts">
-export default {};
-</script>
+<script setup lang="ts"></script>
 <style></style>

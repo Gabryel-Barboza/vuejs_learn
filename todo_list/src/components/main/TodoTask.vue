@@ -22,45 +22,39 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ref, computed } from 'vue';
+<script setup lang="ts">
+import { computed, ref } from 'vue';
 
-export default {
-  props: {
-    task: { type: Object, required: true },
-  },
-  setup(props, ctx) {
-    const id = props.task.id;
-    const title = ref(props.task.title);
-    const taskFinished = ref(props.task.isFinished);
+const emit = defineEmits(['updateTaskTitle', 'deleteTask']);
+const props = defineProps({ task: { type: Object, required: true } });
 
-    const dateCompleted = computed(() => {
-      return taskFinished.value ? new Date().toLocaleDateString() : '';
-    });
+const id = props.task.id;
+const taskFinished = ref(props.task.isFinished);
+const title = ref(props.task.title);
 
-    const editText = ($evt: unknown) => {
-      if (
-        $evt &&
-        typeof $evt === 'object' &&
-        'target' in $evt &&
-        $evt.target &&
-        typeof $evt.target === 'object' &&
-        'innerText' in $evt.target &&
-        typeof $evt.target.innerText === 'string'
-      ) {
-        const text = $evt.target.innerText;
-        title.value = text;
-        ctx.emit('updateTaskTitle', id, text);
-      }
-    };
+const dateCompleted = computed(() => {
+  return taskFinished.value ? new Date().toLocaleDateString() : '';
+});
 
-    const endEdit = () => {};
-
-    const deleteTask = () => ctx.emit('deleteTask', id);
-
-    return { title, dateCompleted, taskFinished, deleteTask, editText, endEdit };
-  },
+const editText = ($evt: unknown) => {
+  if (
+    $evt &&
+    typeof $evt === 'object' &&
+    'target' in $evt &&
+    $evt.target &&
+    typeof $evt.target === 'object' &&
+    'innerText' in $evt.target &&
+    typeof $evt.target.innerText === 'string'
+  ) {
+    const text = $evt.target.innerText;
+    title.value = text;
+    emit('updateTaskTitle', id, text);
+  }
 };
+
+const endEdit = () => {};
+
+const deleteTask = () => emit('deleteTask', id);
 </script>
 
 <style scoped>

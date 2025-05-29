@@ -9,6 +9,7 @@
     <textarea
       id="todo-task-textarea"
       class="self-center bg-gray-600/50 p-4 w-9/10 border-2 border-black/40 rounded-sm"
+      @keydown.enter="addTaskDescription"
       v-model="description"
       rows="5"
       maxlength="500"
@@ -24,21 +25,16 @@
     </button>
   </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { ref, onBeforeUnmount } from 'vue';
-export default {
-  setup(props, ctx) {
-    const description = ref('');
+const emit = defineEmits(['addTaskDescription']);
+const description = ref('');
 
-    const addTaskDescription = () => ctx.emit('addTaskDescription', description.value);
+const addTaskDescription = () => emit('addTaskDescription', description.value);
 
-    onBeforeUnmount(() => {
-      description.value = '';
-    });
-
-    return { description, addTaskDescription };
-  },
-};
+onBeforeUnmount(() => {
+  description.value = '';
+});
 </script>
 <style scoped>
 textarea {

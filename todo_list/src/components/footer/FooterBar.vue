@@ -29,34 +29,19 @@
     <SignatureBar />
   </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import ContactInformation from '@/components/footer/ContactInformation.vue';
 import SignatureBar from '@/components/footer/SignatureBar.vue';
 import { ref } from 'vue';
-export default {
-  components: { ContactInformation, SignatureBar },
-  setup() {
-    const githubClass = ref('text-black hover:text-white');
-    const linkedinClass = ref('text-blue-500 hover:text-white before:content-[]');
-    const emailClass = ref('text-red-400 hover:text-white before:content-[]');
-    const whatsappClass = ref('text-green-500 hover:text-white before:content-[]');
 
-    const github = 'https://github.com/Gabryel-Barboza';
-    const linkedin = 'https://www.linkedin.com/in/gabryel-barboza-nunes-35a9a6311/';
-    const email = 'mailto:gabryelbuildbarboza@gmail.com';
-    const whatsapp = '#';
+const githubClass = ref('text-black hover:text-white');
+const linkedinClass = ref('text-blue-500 hover:text-white before:content-[]');
+const emailClass = ref('text-red-400 hover:text-white before:content-[]');
+const whatsappClass = ref('text-green-500 hover:text-white before:content-[]');
 
-    return {
-      githubClass,
-      linkedinClass,
-      emailClass,
-      whatsappClass,
-      email,
-      github,
-      linkedin,
-      whatsapp,
-    };
-  },
-};
+const github = 'https://github.com/Gabryel-Barboza';
+const linkedin = 'https://www.linkedin.com/in/gabryel-barboza-nunes-35a9a6311/';
+const email = 'mailto:gabryelbuildbarboza@gmail.com';
+const whatsapp = '#';
 </script>
 <style></style>
