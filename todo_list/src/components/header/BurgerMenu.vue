@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-// RouterLink está sendo exportado para componentes acima
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
 

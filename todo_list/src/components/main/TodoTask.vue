@@ -1,9 +1,17 @@
 <template>
   <div class="p-3 bg-gray-600/50 todo-container">
     <input v-model="taskFinished" class="mr-2 accent-green-300 container-input" type="checkbox" />
-    <span class="font-bold container-title">{{ title }}</span>
+
+    <span
+      @blur="editText"
+      @keydown.enter="endEdit"
+      id="todo-task-title"
+      contenteditable
+      class="font-bold container-title"
+      >{{ title }}</span
+    >
     <span class="p-1 ml-2 rounded-md shadow-md bg-green-300/10 container-date">{{
-      completionDate
+      dateCompleted
     }}</span>
     <span
       @click="deleteTask"
@@ -26,13 +34,31 @@ export default {
     const title = ref(props.task.title);
     const taskFinished = ref(props.task.isFinished);
 
-    const completionDate = computed(() => {
+    const dateCompleted = computed(() => {
       return taskFinished.value ? new Date().toLocaleDateString() : '';
     });
 
+    const editText = ($evt: unknown) => {
+      if (
+        $evt &&
+        typeof $evt === 'object' &&
+        'target' in $evt &&
+        $evt.target &&
+        typeof $evt.target === 'object' &&
+        'innerText' in $evt.target &&
+        typeof $evt.target.innerText === 'string'
+      ) {
+        const text = $evt.target.innerText;
+        title.value = text;
+        ctx.emit('updateTaskTitle', id, text);
+      }
+    };
+
+    const endEdit = () => {};
+
     const deleteTask = () => ctx.emit('deleteTask', id);
 
-    return { title, completionDate, taskFinished, deleteTask };
+    return { title, dateCompleted, taskFinished, deleteTask, editText, endEdit };
   },
 };
 </script>

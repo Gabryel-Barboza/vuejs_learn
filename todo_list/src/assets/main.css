@@ -3,5 +3,6 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: "Tangerine", cursive;
+  --font-display: 'Tangerine', cursive;
+  --breakpoint-xs: 27rem;
 }

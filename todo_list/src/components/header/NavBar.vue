@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--RouterLink recebido do componente BurgerMenu-->
     <RouterLink to="/">
       <img alt="Vue logo" src="@/assets/logo.svg" width="25" height="25" />
     </RouterLink>
@@ -21,6 +20,7 @@
 <!--atributo setup indica o hook setup() e o bloco é acessível ao template, não precisa de retorno-->
 <script setup lang="ts">
 import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
 import BurgerMenu from '@/components/header/BurgerMenu.vue';
 
 const windowSize = ref(window.innerWidth);

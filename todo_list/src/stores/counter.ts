@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import type { TaskItem } from '../schemas/TaskSchema';
 
 export const useCounterStore = defineStore('counter', () => {
   // Pinia Composition API syntax
+
+  // TODO: Bug de tasks quando servidor da API desligado, Bug visual de exclusão de tasks
 
   // Importando variáveis ambiente com Vite
   const TODOS_ENDPOINT_URL = import.meta.env.VITE_API_BASE_URL + '/todos';
@@ -15,15 +18,24 @@ export const useCounterStore = defineStore('counter', () => {
 
   async function pullTasks() {
     const response = await axios.get(TODOS_ENDPOINT_URL);
-    const taskList = response.data;
 
-    tasks.value = taskList;
+    if (response.status == 200) {
+      const taskList = response.data;
+
+      tasks.value = taskList;
+    }
   }
 
-  async function createTask(task: object) {
+  async function createTask(task: TaskItem) {
     const response = await axios.post(TODOS_ENDPOINT_URL, task);
 
     return response.status == 201 ? true : false;
+  }
+
+  async function updateTask(id: number, task: Partial<TaskItem>) {
+    const response = await axios.put(TODOS_ENDPOINT_URL + `/${id}`, task);
+
+    return response.status === 200 ? true : false;
   }
 
   async function removeTask(id: number) {
@@ -32,5 +44,5 @@ export const useCounterStore = defineStore('counter', () => {
     return response.status == 204 ? true : false;
   }
 
-  return { tasks, isTasks, pullTasks, createTask, removeTask };
+  return { tasks, isTasks, pullTasks, createTask, updateTask, removeTask };
 });
