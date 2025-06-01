@@ -31,7 +31,7 @@ Assim, para inicializar projetos utilizando a versão moderna do VueJs com Vite:
 * Seleciona as dependências necessárias do projeto como Vue Router, Pinia (Substituto moderno do VUEx para gerenciamento de estado), TypeScript e outros...
 
 ## Aprofundando conceitos 📜
-Os padrões e comportamentos aprendidos durante o primeiro projeto são aprofundados em um projeto completo VueJs, seguindo o padrão moderno com Vite como servidor, Composition API, Pinia para gerenciamento de estados, Roteamento com Vue Router, TypeScript, Tailwind CSS. 
+Os padrões e comportamentos aprendidos durante o primeiro projeto são aprofundados em um projeto completo VueJs, seguindo o padrão moderno com Vite como build tool e servidor, Composition API, Pinia para gerenciamento de estados, Roteamento com Vue Router, TypeScript e Tailwind CSS para estilização. 
 
 O desenvolvimento de uma [TODO List](https://github.com/Gabryel-Barboza/vuejs_learn/tree/main/todo_list) é o objetivo desse projeto para aplicar os conceitos do Vue.Js.
 
@@ -40,11 +40,13 @@ Para armazenar a lista de tarefas e simular um banco de dados, foi desenvolvida 
 ![Captura de tela de 2025-06-01 02-22-51](https://github.com/user-attachments/assets/e4bc6bed-8560-4f96-8455-31b98ba49e58)
 
 Com o uso do Tailwind, a aplicação foi desenvolvida com o padrão mobile-first, permitindo responsividade desde telas pequenas até desktops.
+* Mobile
 
 ![Captura de tela de 2025-06-01 02-23-51](https://github.com/user-attachments/assets/5e9cf5f7-47ec-48d1-97bb-06b459f850bd)
 
 ![Captura de tela de 2025-06-01 02-24-23](https://github.com/user-attachments/assets/7c8e4a38-35ee-482c-8fcf-fef3477b6e11)
 
+* Desktop
 ![Captura de tela de 2025-06-01 02-25-15](https://github.com/user-attachments/assets/0a572840-1258-4f9e-ab29-9b361bd986f8)
 ![Captura de tela de 2025-06-01 02-25-31](https://github.com/user-attachments/assets/41272539-3744-4c79-a6d4-05aba98f6f00)
 
