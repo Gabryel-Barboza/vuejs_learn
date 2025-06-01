@@ -46,7 +46,6 @@ Com o uso do Tailwind, a aplicação foi desenvolvida com o padrão mobile-first
 
 ![Captura de tela de 2025-06-01 02-24-23](https://github.com/user-attachments/assets/7c8e4a38-35ee-482c-8fcf-fef3477b6e11)
 
-* Desktop
 ![Captura de tela de 2025-06-01 02-25-15](https://github.com/user-attachments/assets/0a572840-1258-4f9e-ab29-9b361bd986f8)
 ![Captura de tela de 2025-06-01 02-25-31](https://github.com/user-attachments/assets/41272539-3744-4c79-a6d4-05aba98f6f00)
 
