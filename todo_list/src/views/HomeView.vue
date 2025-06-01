@@ -3,7 +3,7 @@ import TaskList from '@/components/main/TaskList.vue';
 </script>
 
 <template>
-  <section class="w-9/10 mx-auto flex flex-col justify-center items-center">
+  <section class="relative w-9/10 mx-auto flex flex-col justify-center items-center">
     <TaskList />
   </section>
 </template>

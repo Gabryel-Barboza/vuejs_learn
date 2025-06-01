@@ -13,6 +13,12 @@ export const useCounterStore = defineStore('counter', () => {
 
   const isTasks = () => (tasks.value.length > 0 ? true : false);
 
+  const pingServer = async () => {
+    const response = await axios.get(TODOS_ENDPOINT_URL);
+
+    return response.status === 200 ? true : false;
+  };
+
   // Actions == functions
 
   async function pullTasks() {
@@ -48,5 +54,5 @@ export const useCounterStore = defineStore('counter', () => {
     return response.status === 204 ? true : false;
   }
 
-  return { tasks, isTasks, pullTasks, createTask, updateTask, removeTask };
+  return { pingServer, tasks, isTasks, pullTasks, createTask, updateTask, removeTask };
 });

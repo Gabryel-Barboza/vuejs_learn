@@ -6,6 +6,7 @@
       @blur="editText"
       @keydown.enter="endEdit"
       id="todo-task-title"
+      ref="todo-span-title"
       contenteditable
       class="font-bold container-title"
       >{{ title }}</span
@@ -23,17 +24,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref, watch } from 'vue';
 
-const emit = defineEmits(['updateTaskTitle', 'deleteTask']);
+const emit = defineEmits(['updateTaskField', 'deleteTask']);
 const props = defineProps({ task: { type: Object, required: true } });
 
 const id = props.task.id;
 const taskFinished = ref(props.task.isFinished);
 const title = ref(props.task.title);
+const dateCompleted = ref(props.task.dateCompleted);
 
-const dateCompleted = computed(() => {
-  return taskFinished.value ? new Date().toLocaleDateString() : '';
+watch(taskFinished, () => {
+  if (taskFinished.value) {
+    dateCompleted.value = new Date().toLocaleDateString();
+  } else {
+    dateCompleted.value = '';
+  }
+
+  emit('updateTaskField', id, {
+    isFinished: taskFinished.value,
+    dateCompleted: dateCompleted.value,
+  });
 });
 
 const editText = ($evt: unknown) => {
@@ -48,11 +59,23 @@ const editText = ($evt: unknown) => {
   ) {
     const text = $evt.target.innerText;
     title.value = text;
-    emit('updateTaskTitle', id, text);
+    emit('updateTaskField', id, { title: text });
   }
 };
 
-const endEdit = () => {};
+const endEdit = ($evt: unknown) => {
+  if (
+    $evt &&
+    typeof $evt === 'object' &&
+    'target' in $evt &&
+    $evt.target &&
+    typeof $evt.target === 'object' &&
+    'blur' in $evt.target &&
+    typeof $evt.target.blur === 'function'
+  ) {
+    $evt.target.blur();
+  }
+};
 
 const deleteTask = () => emit('deleteTask', id);
 </script>

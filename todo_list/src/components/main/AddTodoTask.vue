@@ -1,17 +1,19 @@
 <template>
-  <div class="p-3 bg-gray-600/50 todo-container border-l-green-300 border-l-2 rounded-sm">
-    <div class="bg-gray-600">
+  <div
+    class="todo-container flex justify-between p-3 bg-gray-600/50 min-w-[260px] w-9/10 max-w-[600px] border-l-green-300 border-l-2 rounded-sm"
+  >
+    <div class="bg-gray-600 w-full">
       <input
         @keydown.enter="addTaskTitle"
         v-model="taskTitle"
-        class="p-2"
+        class="todo-input p-2 w-full"
         type="text"
         placeholder="Adicionar nova tarefa"
       />
     </div>
     <button
       @click="addTaskTitle"
-      class="ml-2 text-green-300 text-2xl font-extrabold cursor-pointer"
+      class="p-1 ml-2 text-green-300 text-2xl font-extrabold cursor-pointer hover:bg-gray-600/20 active:text-amber-200"
     >
       +
     </button>
@@ -36,5 +38,9 @@ const addTaskTitle = () => {
 .todo-container {
   display: flex;
   align-items: center;
+}
+
+.todo-input:focus {
+  outline: 1px solid #7bf1a8;
 }
 </style>

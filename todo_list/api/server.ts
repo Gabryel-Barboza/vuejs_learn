@@ -8,7 +8,7 @@ const todos: TaskItemCreate[] = [
     title: 'Criar Lista de Tarefas com Componentes',
     description:
       'Faça um componente de lista de tarefas para a página principal, contendo um título, data de conclusão (yyyy/mm/dd), uma checkbox para determinar se está completa. Cada tarefa deve ser um componente que recebe os atributos por props.',
-    dateCompleted: '',
+    dateCompleted: '2025/04/20',
     isFinished: false,
   },
   {
